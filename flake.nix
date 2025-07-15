@@ -108,11 +108,11 @@
               echo
               echo "Run Locally:"
               echo
-              echo "  result/bin/cardano-signer \"\$ARGS[@]\""
+              echo "  result/bin/cardano-signer \"\''${ARGS[@]}\""
               echo
               echo "Run from repo remotely:"
               echo
-              echo "  nix run github:johnalotoski/cardano-signer -- \"\$ARGS[@]\""
+              echo "  nix run github:johnalotoski/cardano-signer -- \"\''${ARGS[@]}\""
               echo
               echo "Update (see README.md for more details):"
               echo

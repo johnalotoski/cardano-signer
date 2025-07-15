@@ -14,7 +14,7 @@ To build the cardano-signer:
 
 The CLI binary will be available to run at:
 
-    ./result/bin/cardano-signer
+    ./result/bin/cardano-signer "${ARGS[@]}"
 
 ---
 
@@ -22,11 +22,11 @@ The CLI binary will be available to run at:
 
 To run the CLI tool from this flake without cloning:
 
-    nix run github:johnalotoski/cardano-signer
+    nix run github:johnalotoski/cardano-signer -- "${ARGS[@]}"
 
 You can also run from a local flake path:
 
-    nix run .#cardano-signer
+    nix run .#cardano-signer -- "${ARGS[@]}"
 
 ---
 
