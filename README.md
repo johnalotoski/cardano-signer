@@ -44,7 +44,7 @@ or, if you have [direnv](https://direnv.net) installed:
 
 ## Updating the cardano-signer version
 
-* Update the commit found at `srcRepo.rev` in `flake.nix` and save
+* Update the commit `rev` and `sha256` found in the `srcRepo` fetchFromGitHub function and save
 * Reload the devShell to preload the new source repo
 * Run `update-yarn-file` to generate a new `yarn-$SHORT_REV.lock`
 * Make sure the build succeeds with:
