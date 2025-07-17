@@ -15,8 +15,8 @@
       pkgs.fetchFromGitHub {
         owner = "gitmachtl";
         repo = "cardano-signer";
-        rev = "2f23e2904ae08b98d3e1d383c0e5f2b94af30db8";
-        sha256 = "sha256-eeMonqsvFMqIZ2I/xdx69AkHMecnDjbPK1VmmFvO2hk=";
+        rev = "279d55684e04f274d0168689a9261f16267ef80e";
+        sha256 = "sha256-C8whKGOSidCGGZhuS9TFRfZfOzrFFw7knmIIFhHJ9TM=";
       };
 
     shortRev = commit: builtins.substring 0 7 commit;
