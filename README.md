@@ -46,12 +46,14 @@ or, if you have [direnv](https://direnv.net) installed:
 
 * Update the commit `rev` and `sha256` found in the `srcRepo` fetchFromGitHub function and save
 * Reload the devShell to preload the new source repo
-* Run `update-yarn-file` to generate a new `yarn-$SHORT_REV.lock`
+* Run `update-yarn-file` to generate a new `yarn-$SHORT_REV_OR_REL_TAG.lock`
+* Git add the new lock file
 * Make sure the build succeeds with:
 
     nix build -L .#cardano-signer
 
-* Remove the old `yarn-$OLD_SHORT_REV.lock` file
+* Remove the old `yarn-$OLD_SHORT_REV_OR_REL_TAG.lock` file
+* Git add the deleted old lock file
 * Commit the changes
 * Celebrate! :)
 
