@@ -15,11 +15,14 @@
       pkgs.fetchFromGitHub {
         owner = "gitmachtl";
         repo = "cardano-signer";
-        rev = "279d55684e04f274d0168689a9261f16267ef80e";
-        sha256 = "sha256-C8whKGOSidCGGZhuS9TFRfZfOzrFFw7knmIIFhHJ9TM=";
+        rev = "v1.29.0";
+        sha256 = "sha256-y8yUsmSakaR6foKh/KnRTHctZu3nN/gI0h87wt88suU=";
       };
 
-    shortRev = commit: builtins.substring 0 7 commit;
+    shortRevOrRelTag = rev:
+      if nixpkgs.lib.hasPrefix "v" rev
+      then rev
+      else builtins.substring 0 7 rev;
   in
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
@@ -33,14 +36,14 @@
           cardano-signer = let
             cardano-signer' = mkYarnPackage rec {
               name = "cardano-signer";
-              version = "${shortRev src.rev}";
+              version = "${shortRevOrRelTag src.rev}";
 
               src = srcRepo pkgs;
 
               nativeBuildInputs = [makeWrapper];
 
               packageJSON = "${src.outPath}/src/package.json";
-              yarnLock = ./yarn-${shortRev src.rev}.lock;
+              yarnLock = ./yarn-${shortRevOrRelTag src.rev}.lock;
 
               yarnFlags = ["--frozen-lockfile" "--production"];
 
@@ -64,7 +67,7 @@
               '';
             };
           in
-            runCommand "cardano-signer-${shortRev (srcRepo pkgs).rev}" {} ''
+            runCommand "cardano-signer-${shortRevOrRelTag (srcRepo pkgs).rev}" {} ''
               # Clean up unneeded tarball
               mkdir $out
               cp -r ${cardano-signer'}/* $out
@@ -81,7 +84,7 @@
               cp "$PKG_JSON" .
               chmod +w package.json
               yarn install
-              cp -f yarn.lock yarn-${shortRev (srcRepo pkgs).rev}.lock
+              cp -f yarn.lock yarn-${shortRevOrRelTag (srcRepo pkgs).rev}.lock
               rm -rf yarn.lock package.json node_modules
             '';
           };
