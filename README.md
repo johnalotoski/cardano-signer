@@ -54,7 +54,7 @@ or, if you have [direnv](https://direnv.net) installed:
 
 * Remove the old `yarn-$OLD_SHORT_REV_OR_REL_TAG.lock` file
 * Git add the deleted old lock file
-* Commit the changes
+* Commit the changes, push and verify GHA CI passes
 * Celebrate! :)
 
 ---
