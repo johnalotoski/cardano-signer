@@ -2,7 +2,7 @@
   description = "A nix flake for https://github.com/gitmachtl/cardano-signer";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -15,8 +15,8 @@
       pkgs.fetchFromGitHub {
         owner = "gitmachtl";
         repo = "cardano-signer";
-        rev = "v1.29.0";
-        sha256 = "sha256-y8yUsmSakaR6foKh/KnRTHctZu3nN/gI0h87wt88suU=";
+        rev = "v1.34.0";
+        sha256 = "sha256-9dJpZnEm4adZerDvbtglVHIQIi9P1byAtrKFnh0RBB0=";
       };
 
     shortRevOrRelTag = rev:
